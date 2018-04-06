@@ -1,0 +1,31 @@
+{
+  "name": "npm-dependency-tree-service",
+  "version": "0.0.1",
+  "description": "A simple web service for obtaining an npm module dependency tree",
+  "scripts": {
+    "start": "node ./bin/www",
+    "build": "tsc",
+    "test": "mocha -r ts-node/register test/**/*.ts"
+  },
+  "author": "Yoni Cohen",
+  "license": "MIT",
+  "dependencies": {
+    "@types/express": "^4.11.1",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "npm-fetch-dependencies": "git+https://github.com/YoniCohen/npm-fetch-dependencies.git",
+    "typescript": "^2.7.2",
+    "typings": "^2.1.1"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.2",
+    "@types/mocha": "^2.2.48",
+    "@types/body-parser": "^1.16.8",
+    "@types/supertest": "^2.0.4",
+    "chai": "^4.1.2",
+    "mocha": "^5.0.1",
+    "sqlite3": "^3.1.13",
+    "ts-node": "^5.0.1",
+    "supertest": "^3.0.0"
+  }
+}
