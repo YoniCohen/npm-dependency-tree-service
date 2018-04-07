@@ -12,9 +12,11 @@
   "license": "MIT",
   "dependencies": {
     "@types/express": "^4.11.1",
+    "@types/semver": "^5.5.0",
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
     "npm-fetch-dependencies": "git+https://github.com/YoniCohen/npm-fetch-dependencies.git",
+    "semver": "^5.5.0",
     "typescript": "^2.7.2",
     "typings": "^2.1.1"
   },
