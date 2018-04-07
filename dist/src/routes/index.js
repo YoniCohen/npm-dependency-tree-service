@@ -10,13 +10,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const semver_1 = require("semver");
 const npm_fetch_dependencies_1 = require("npm-fetch-dependencies");
-const redisConfig = __importStar(require("./../config/redis"));
+const redisConfig = __importStar(require("./../../config/redis"));
 exports.routes = express_1.Router();
 // no ts definitions - require as a workaround
 const cache = require('express-redis-cache')({
     host: redisConfig.REDIS_DB_ADDR,
     prefix: 'dependencytreeredis',
-    expire: redisConfig.REDIS_ENTRY_EXPIRY_SECONDS
+    expire: 60
 });
 exports.routes.get('/', (req, res, next) => {
     res.status(403).send();

@@ -1,8 +1,16 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { valid as semver_valid } from 'semver';
 import { getDependencyTreeFromNpm, FetchOptions } from 'npm-fetch-dependencies';
+import * as redisConfig from './../config/redis';
 
-export const routes = Router();
+export const routes: Router = Router();
+
+// no ts definitions - require as a workaround
+const cache = require('express-redis-cache')({
+    host: redisConfig.REDIS_DB_ADDR,
+    prefix: 'dependencytreeredis',
+    expire: redisConfig.REDIS_ENTRY_EXPIRY_SECONDS
+});
 
 routes.get('/', (req: Request, res: Response, next: NextFunction) => {
     res.status(403).send();
@@ -12,11 +20,11 @@ routes.get('/status', (req: Request, res: Response, next: NextFunction) => {
     res.status(200).send("OK");
 });
 
-routes.get('/tree/:packageName', (req: Request, res: Response, next: NextFunction) => {
+routes.get('/tree/:packageName', cache.route(), (req: Request, res: Response, next: NextFunction) => {
     handleTreeRequest(req, res, next);
 });
 
-routes.get('/tree/:packageName/:packageVersion', (req: Request, res: Response, next: NextFunction) => {
+routes.get('/tree/:packageName/:packageVersion', cache.route(), (req: Request, res: Response, next: NextFunction) => {
     handleTreeRequest(req, res, next);
 });
 
